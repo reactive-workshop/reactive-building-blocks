@@ -8,7 +8,7 @@ public class SampleBackPressureDemo {
     public static void main(String[] args) {
         Flux<Integer> flux = Flux.range(1, 10).log();
 
-//        subscribe(flux);
+        subscribe(flux);
 //        will result in all elements pushed at once
 
         subscribeWithBackpressure(flux);
