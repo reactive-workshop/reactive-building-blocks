@@ -10,7 +10,7 @@ import reactor.util.function.Tuples;
 import java.util.List;
 import java.util.Map;
 
-public class ZipTests {
+public class Test_004_Zip {
 
     @Test
     public void doubleTheNumbersWithZip() {

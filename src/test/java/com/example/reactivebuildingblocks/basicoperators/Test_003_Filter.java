@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.Map;
 
-public class FilterTests {
+public class Test_003_Filter {
 
     @Test
     public void numbersGreaterThan2WithFilter() {

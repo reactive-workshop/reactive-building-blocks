@@ -8,7 +8,7 @@ import reactor.core.publisher.Mono;
 import java.util.List;
 import java.util.Map;
 
-public class FlatMapTests {
+public class Test_002_FlatMap {
 
     @Test
     public void doubleTheNumbersWithFlatMap() {

@@ -6,7 +6,7 @@ import reactor.core.publisher.Flux;
 
 import java.util.List;
 
-public class MapTests {
+public class Test_001_Map {
 
     @Test
     public void doubleTheNumbersWithMap() {
