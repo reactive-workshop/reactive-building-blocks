@@ -29,7 +29,7 @@ public class FlatMapTests {
 
         Flux<String> fruits = Flux.just("apple", "orange", "grapes", "watermelon");
 
-        //TODO. Use the utility function colorOf
+        //TODO Use the utility function colorOf. Note that colorOf returns a Mono
         Flux<String> fruitColors = fruits;
 
         Assertions.assertEquals(List.of("red", "orange", "purple", "green"), fruitColors.collectList().block());
@@ -45,7 +45,7 @@ public class FlatMapTests {
     }
 
     @Test
-    public void colorOfMixedCasedFruitsWithFlatMap() {
+    public void colorOfMixedCasedFruits() {
 
         Flux<String> fruits = Flux.just("aPPle", "Orange", "graPes", "waterMeLon");
 
