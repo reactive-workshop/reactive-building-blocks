@@ -13,10 +13,25 @@ import java.util.Map;
 public class Test_004_Zip {
 
     @Test
+    public void fullNamesWithZip() {
+        Flux<String> firstNames = Flux.just("Kalpana", "Imran", "Elon", "Michelle");
+        Flux<String> lastNames = Flux.just("Chawla", "Khan", "Musk", "Obama");
+
+        Flux<String> fullNames = Flux.zip(firstNames, lastNames,
+                (x, y) -> String.join(" ", x, y));
+
+        Assertions.assertEquals(List.of("Kalpana Chawla", "Imran Khan", "Elon Musk", "Michelle Obama"),
+                fullNames.collectList().block());
+    }
+
+
+    @Test
     public void doubleTheNumbersWithZip() {
         Flux<Integer> numbers = Flux.just(1, 2, 3, 4);
+        Flux<Integer> doubledNumbers = numbers.map(x -> x * 2);
 
-        Flux<Tuple2<Integer, Integer>> numbersAndTheirDoubles = numbers.zipWith(numbers.map(x -> x * 2));
+        Flux<Tuple2<Integer, Integer>> numbersAndTheirDoubles = numbers.zipWith(doubledNumbers);
+        //[(1, 2), (2, 4), (3, 6), (4, 8)]
 
         Assertions.assertEquals(List.of(Tuples.of(1, 2),
                 Tuples.of(2, 4),

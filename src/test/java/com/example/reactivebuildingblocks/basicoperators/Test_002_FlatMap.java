@@ -11,17 +11,16 @@ import java.util.Map;
 public class Test_002_FlatMap {
 
     @Test
-    public void doubleTheNumbersWithFlatMap() {
+    public void repeatTheNumbersWithFlatMap() {
 
-        Flux<Integer> numbers = Flux.just(1, 2, 3, 4);
+        Flux<Integer> numbers = Flux.just(1, 2);
 
-        Flux<Integer> doubledNumbers = numbers.flatMap(x -> doubleTheNumber(x));
+        Flux<Integer> repeatedNumbers = numbers.flatMap(x -> repeatTheNumber(x));
 
-        Assertions.assertEquals(List.of(2, 4, 6, 8), doubledNumbers.collectList().block());
+        Assertions.assertEquals(List.of(1, 1, 2, 2), repeatedNumbers.collectList().block());
     }
-
-    private Mono<Integer> doubleTheNumber(int number) {
-        return Mono.just(number * 2);
+    private Flux<Integer> repeatTheNumber(int number) {
+        return Flux.just(number, number);
     }
 
     @Test
