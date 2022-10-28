@@ -12,16 +12,16 @@ Examples:
 - Fetch A single user by id #Already implemented
 - Fetch A single KYC by id #Already implemented
 - Get All users #Already implemented
+
 - Search users by name #Controller should be there, returning a Flux.empty(). Fix this.
 - Get All users anonymised Without name and mobile #Controller should be there. map - make name ### and mobile ***
+- Get Users with age more than 18 #filter
+
 - Get KYCProfile for a user by mobile #Need repository method and controller method.
 - Get KYCProfile of a user by id #Mono.zip 
-- Get Users with age more than 18 #filter
+
 - Throw UserNotFoundError when we cannot find user by given ID #switchIfEmpty
 - Throw KYCNotFoundError when we cannot find KYC for a UserId #switchIfEmpty
+
 - Change UserNotFoundError and KycNotFoundError to ResourceNotFoundError, any other error should give ApplicationError #onErrorMap
 - Provide default KYC as document_type `NONE` & document_number `00000` when KYC Not Found for user #onErrorResume
-  
-Advanced
-- GetKycFrom Cache/Hashmap for given id if present and fetch from DB if it is not found in cache #switchIfEmpty
-- Make the fetch is not called when entry is found in the cache 
