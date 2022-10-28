@@ -3,22 +3,20 @@ package com.example.reactivebuildingblocks.basicoperators;
 import com.example.reactivebuildingblocks.basicoperators.model.KYC;
 import com.example.reactivebuildingblocks.basicoperators.model.KYCDoc;
 import com.example.reactivebuildingblocks.basicoperators.model.User;
-import com.example.reactivebuildingblocks.basicoperators.repository.KYCRepository;
-import com.example.reactivebuildingblocks.basicoperators.repository.UserRepository;
+import com.example.reactivebuildingblocks.basicoperators.repository.InMemoryKYCRepository;
+import com.example.reactivebuildingblocks.basicoperators.repository.InMemoryUserRepository;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 import static java.util.Arrays.asList;
 
 @Component
 public class UserDataSetup implements InitializingBean {
     @Autowired
-    private UserRepository userRepository;
+    private InMemoryUserRepository userRepository;
     @Autowired
-    private KYCRepository kycRepository;
+    private InMemoryKYCRepository kycRepository;
 
     @Override
     public void afterPropertiesSet() {
@@ -33,14 +31,10 @@ public class UserDataSetup implements InitializingBean {
         KYC kyc3 = new KYC("102", "10003", KYCDoc.DL, "12340");
         KYC kyc4 = new KYC("103", "10005", KYCDoc.VOTER_ID, "12349");
 
-        userRepository
-                .deleteAll()
-                .then(userRepository.saveAll(asList(fooBar, barBaz, bazball, jakeBall, willSmith)).then())
-                .subscribe();
+        userRepository.deleteAll();
+        userRepository.saveAll(asList(fooBar, barBaz, bazball, jakeBall, willSmith));
 
-        kycRepository
-                .deleteAll()
-                .then(kycRepository.saveAll(asList(kyc1, kyc2, kyc3, kyc4)).then())
-                .subscribe();
+        kycRepository.deleteAll();
+        kycRepository.saveAll(asList(kyc1, kyc2, kyc3, kyc4));
     }
 }
