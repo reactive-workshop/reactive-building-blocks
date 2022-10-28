@@ -26,14 +26,12 @@ public class UserService {
 
     public Mono<User> getUserById(String id) {
         return userRepository
-                .findById(id)
-                .switchIfEmpty(Mono.error(UserNotFoundError::new));
+                .findById(id);
     }
 
     public Mono<KYC> getKycByUserId(String userId) {
         return kycRepository
-                .findFirstByUserId(userId)
-                .switchIfEmpty(Mono.error(KYCNotFoundError::new));
+                .findFirstByUserId(userId);
     }
 
     public Flux<User> getAllUsers() {
@@ -41,34 +39,22 @@ public class UserService {
     }
 
     public Flux<User> findUserByName(String namePart) {
-        return userRepository.findByNameContaining(namePart);
+        return Flux.empty();
     }
 
-    public Flux<User> getAllUsersPIIMasked() {
-        return getAllUsers()
-                .map(user ->
-                        new User(user.id(), "###", user.gender(), user.age(), "***")
-                );
+    public Flux<User> getAllUsersPIIMasked()  {
+        return Flux.empty();
     }
 
-    public Flux<User> aboveEighteen() {
-        return getAllUsers().filter(user -> user.age() > 18);
+    public Flux<User> aboveEighteen()  {
+        return Flux.empty();
     }
 
-    public Mono<KYCProfile> getKycProfileByMobile(String mobile) {
-        return userRepository
-                .findFirstByMobile(mobile)
-                .flatMap(user -> kycRepository
-                        .findFirstByUserId(user.id())
-                        .map(kyc -> buildKycProfile(user, kyc)));
+    public Mono<KYCProfile> getKycProfileByMobile(String mobile)  {
+        return Mono.empty();
     }
 
-    public Mono<KYCProfile> getKycProfileByUserId(String userId) {
-        Mono<User> user = getUserById(userId)
-                .onErrorMap(UserNotFoundError.class, (e) -> new KYCProfileNotFoundError());
-
-        Mono<KYC> kyc = getKycByUserId(userId)
-                .onErrorResume(KYCNotFoundError.class, (e) -> Mono.just(KYC.noneKYC()));
-        return Mono.zip(user, kyc, UserService::buildKycProfile);
+    public Mono<KYCProfile> getKycProfileByUserId(String userId)  {
+        return Mono.empty();
     }
 }
