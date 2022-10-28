@@ -1,5 +1,9 @@
 package com.example.reactivebuildingblocks.basicoperators.model;
 
 
-public class KYCProfile {
+public record KYCProfile(String userId,
+         String name,
+         String gender,
+         int age,
+         KYCDoc documentType, String documentNumber) {
 }

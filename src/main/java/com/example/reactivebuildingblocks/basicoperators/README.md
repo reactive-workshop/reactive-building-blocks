@@ -10,12 +10,13 @@ Examples:
     - [Composite Model] KYCProfile => user_id, name, gender, age, document_type, document_number
   
 - Fetch A single user by id #Already implemented
+- Fetch A single KYC by id #Already implemented
 - Get All users #Already implemented
 - Search users by name #Controller should be there, returning a Flux.empty(). Fix this.
-- Get All users anonymised Without name #Controller should be there. map - make name and mobile ###
+- Get All users anonymised Without name and mobile #Controller should be there. map - make name ### and mobile ***
 - Get KYCProfile for a user by mobile #Need repository method and controller method.
 - Get KYCProfile of a user by id #Mono.zip 
-- Get Users with age between 18 to 20 #filter
+- Get Users with age more than 18 #filter
 - Throw UserNotFoundError when we cannot find user by given ID #switchIfEmpty
 - Throw KYCNotFoundError when we cannot find KYC for a UserId #switchIfEmpty
 - Change UserNotFoundError and KycNotFoundError to ResourceNotFoundError, any other error should give ApplicationError #onErrorMap
