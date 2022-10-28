@@ -12,7 +12,7 @@ import java.util.Optional;
 @Service
 public class InMemoryUserRepository {
 
-    private List<User> users = new ArrayList<>();
+    private final List<User> users = new ArrayList<>();
     public Mono<User> findById(String id) {
         Optional<User> user = this.users.stream().filter(u -> u.id().equals(id)).findFirst();
         return user.map(Mono::just).orElseGet(Mono::empty);

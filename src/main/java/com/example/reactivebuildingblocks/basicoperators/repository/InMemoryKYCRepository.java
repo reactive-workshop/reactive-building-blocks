@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 public class InMemoryKYCRepository {
-    private List<KYC> kycs = new ArrayList<>();
+    private final List<KYC> kycs = new ArrayList<>();
 
     public Mono<KYC> findFirstByUserId(String userId) {
         Optional<KYC> kyc = kycs.stream().filter(k -> k.userId().equals(userId)).findFirst();
