@@ -114,6 +114,26 @@
 			"response": []
 		},
 		{
+			"name": "Users Above 18",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/above-eighteen",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"above-eighteen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "KYC Profile by Mobile",
 			"request": {
 				"method": "GET",
@@ -155,26 +175,6 @@
 						"users",
 						"10003",
 						"kyc-profile"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Users Above 18",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/users/above-eighteen",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"above-eighteen"
 					]
 				}
 			},

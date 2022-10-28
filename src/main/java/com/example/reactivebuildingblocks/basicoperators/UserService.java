@@ -51,6 +51,10 @@ public class UserService {
                 );
     }
 
+    public Flux<User> aboveEighteen() {
+        return getAllUsers().filter(user -> user.age() > 18);
+    }
+
     public Mono<KYCProfile> getKycProfileByMobile(String mobile) {
         return userRepository
                 .findFirstByMobile(mobile)
@@ -66,9 +70,5 @@ public class UserService {
         Mono<KYC> kyc = getKycByUserId(userId)
                 .onErrorResume(KYCNotFoundError.class, (e) -> Mono.just(KYC.noneKYC()));
         return Mono.zip(user, kyc, UserService::buildKycProfile);
-    }
-
-    public Flux<User> aboveEighteen() {
-        return getAllUsers().filter(user -> user.age() > 18);
     }
 }
