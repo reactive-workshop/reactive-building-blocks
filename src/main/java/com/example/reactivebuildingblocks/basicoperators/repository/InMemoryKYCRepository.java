@@ -6,13 +6,15 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InMemoryKYCRepository {
     private List<KYC> kycs = new ArrayList<>();
 
     public Mono<KYC> findFirstByUserId(String userId) {
-        return Mono.just(kycs.stream().filter(k -> k.userId().equals(userId)).findFirst().get());
+        Optional<KYC> kyc = kycs.stream().filter(k -> k.userId().equals(userId)).findFirst();
+        return kyc.map(Mono::just).orElseGet(Mono::empty);
     }
 
     public void deleteAll() {

@@ -7,13 +7,15 @@ import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InMemoryUserRepository {
 
     private List<User> users = new ArrayList<>();
     public Mono<User> findById(String id) {
-        return Mono.just(this.users.stream().filter(u -> u.id().equals(id)).findFirst().get());
+        Optional<User> user = this.users.stream().filter(u -> u.id().equals(id)).findFirst();
+        return user.map(Mono::just).orElseGet(Mono::empty);
     }
 
     public Flux<User> findAll() {
@@ -25,9 +27,9 @@ public class InMemoryUserRepository {
     }
 
     public Mono<User> findFirstByMobile(String mobile) {
-        return Mono.just(this.users.stream().filter(u -> u.mobile().equalsIgnoreCase(mobile))
-                .findFirst()
-                .get());
+        Optional<User> user = this.users.stream().filter(u -> u.mobile().equalsIgnoreCase(mobile))
+                .findFirst();
+        return user.map(Mono::just).orElseGet(Mono::empty);
     }
 
     public void deleteAll() {
