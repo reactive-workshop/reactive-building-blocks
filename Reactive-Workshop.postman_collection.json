@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "c8ca6089-e1e3-43e7-94c0-7119ea565272",
+		"name": "Reactive-Workshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get User By User Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/10002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"10002"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get KYC By User Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/10002/kyc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"10002",
+						"kyc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search user by name",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/find-user?namePart=Ba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"find-user"
+					],
+					"query": [
+						{
+							"key": "namePart",
+							"value": "Ba"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get PII Masked",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/all/pii-masked",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"all",
+						"pii-masked"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KYC Profile by Mobile",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/kyc-profile?mobile=123456788",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"kyc-profile"
+					],
+					"query": [
+						{
+							"key": "mobile",
+							"value": "123456788"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KYC Profile by Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/10003/kyc-profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"10003",
+						"kyc-profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Above 18",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/above-eighteen",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"above-eighteen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/12345",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"12345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KYC Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/10004/kyc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"10004",
+						"kyc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KYC Profile Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/12345/kyc-profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"12345",
+						"kyc-profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "KYC Profile with Default KYC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/users/10004/kyc-profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"users",
+						"10004",
+						"kyc-profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
