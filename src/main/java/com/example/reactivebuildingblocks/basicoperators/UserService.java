@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Predicate;
+
 @Service
 public class UserService {
     @Autowired
@@ -26,12 +30,14 @@ public class UserService {
 
     public Mono<User> getUserById(String id) {
         return userRepository
-                .findById(id);
+                .findById(id)
+                .switchIfEmpty(Mono.error(UserNotFoundError::new));
     }
 
     public Mono<KYC> getKycByUserId(String userId) {
         return kycRepository
-                .findFirstByUserId(userId);
+                .findFirstByUserId(userId)
+                .switchIfEmpty(Mono.error(KYCNotFoundError::new));
     }
 
     public Flux<User> getAllUsers() {
@@ -39,22 +45,33 @@ public class UserService {
     }
 
     public Flux<User> findUserByName(String namePart) {
-        return Flux.empty();
+        return userRepository.findByNameContaining(namePart);
     }
 
     public Flux<User> getAllUsersPIIMasked()  {
-        return Flux.empty();
+        return getAllUsers()
+                .map(user -> new User(user.id(), "###", user.gender(), user.age(), "***"));
     }
 
     public Flux<User> aboveEighteen()  {
-        return Flux.empty();
+        return getAllUsers().filter(user -> user.age() > 18);
     }
 
     public Mono<KYCProfile> getKycProfileByMobile(String mobile)  {
-        return Mono.empty();
+        Mono<User> user = userRepository.findFirstByMobile(mobile);
+        return user.flatMap(u -> {
+            Mono<KYC> kyc = kycRepository.findFirstByUserId(u.id());
+            return kyc.map(k -> buildKycProfile(u, k));
+        });
     }
 
     public Mono<KYCProfile> getKycProfileByUserId(String userId)  {
-        return Mono.empty();
+        Mono<User> user = getUserById(userId)
+                .onErrorMap(UserNotFoundError.class, e -> new KYCProfileNotFoundError());
+        Mono<KYC> kyc = getKycByUserId(userId)
+                .onErrorResume(KYCNotFoundError.class, e -> Mono.just(KYC.noneKYC()));
+
+        return Mono
+                .zip(user, kyc, UserService::buildKycProfile);
     }
 }

@@ -23,5 +23,5 @@ Examples:
 - Throw UserNotFoundError when we cannot find user by given ID #switchIfEmpty
 - Throw KYCNotFoundError when we cannot find KYC for a UserId #switchIfEmpty
 
-- Change UserNotFoundError and KycNotFoundError to ResourceNotFoundError, any other error should give ApplicationError #onErrorMap
+- Change UserNotFoundError to ResourceNotFoundError, any other error should give ApplicationError #onErrorMap
 - Provide default KYC as document_type `NONE` & document_number `00000` when KYC Not Found for user #onErrorResume
